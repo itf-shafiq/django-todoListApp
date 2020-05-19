@@ -1,0 +1,36 @@
+.todo_contain{
+    margin-top: 7%;
+}
+
+.todo_table tbody tr th{
+    background-color: #343a40;
+    border-left:2px solid azure;
+    text-align: center ;
+    
+
+}
+.todo_table tbody tr th:nth-child(1){
+    border-left:2px hidden azure;
+    text-align: left;
+    
+}
+.todo_table tbody tr th a {
+    color: azure;
+}
+.todo_form{
+    width: 100%;
+}
+.todo_form button{
+    margin-bottom: 4.25rem;
+}
+
+.form-group{
+    width: 30%;
+    display: inline-block !important;
+
+}
+
+.cross{
+    text-decoration: line-through wavy brown;
+}
+

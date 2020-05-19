@@ -1,0 +1,84 @@
+<!-- BASE FILE LINKING -->
+{% extends 'base.html' %}
+
+<!--  Page Title  -->
+
+
+{% block title %}Todo App || Home{% endblock title %}
+    
+
+<!-- First Block Content Start from here  -->
+{% block content %}
+
+<!-- Container start  -->
+    <div class="container todo_contain ">
+        <!-- Row Start  -->
+        <div class="row">
+            <!-- Success Message Functionality Start  -->
+                
+                {% if messages %}
+                   {% for message in messages %}
+                   <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                         {{ message }}
+                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                   </div>
+                   {% endfor %} 
+                {% endif %}
+                    
+            <!-- Success Message Functionality End  -->
+
+
+            <!-- Task Form start  -->
+            <form class="todo_form" method="POST">
+                {% csrf_token %}
+                <div class="form-group todo_form">
+                  <input type="text" class="form-control" id="task" name="task">
+                  <small id="task" class="form-text text-muted">Add your task from here</small>
+
+                </div>
+                <button type="submit" class="btn btn-primary">Add Task</button>
+              </form>
+            <!-- Task Form End   -->
+
+            <!-- Table Start  -->
+            <table class="table todo_table">
+                <tbody>
+                    <!-- Task List Looping start  -->
+                    {% if all_task %}
+                        {% for things in all_task %}
+                            
+                            {% if things.completed %}
+                                    <tr>
+                                        <th scope="col" name="task" class="cross" ><a href=" {% url 'edit' things.id %}"> {{ things.task }}</a></th>
+                                        <th scope="col" ><a href="{% url 'uncompleted' things.id %}"> Undone </a></th>
+                                        <th scope="col"> <a href=" {% url 'delete' things.id %}"> Delete</a></th>
+                                    </tr>
+                            {% else %}
+                                <tr>
+                                    <th scope="col" name="task" ><a href="{% url 'edit' things.id %}"> {{ things.task }}</a></th>
+                                    <th scope="col"><a href="{% url 'completed' things.id %}"> Done </a></th>
+                                    <th scope="col"> <a href=" {% url 'delete' things.id %}"> Delete</a></th>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <h1 class="center">You haven't added any task. Add your task right now </h1>
+                    {% endif %}
+                    <!-- Task List Looping End  -->
+
+                </tbody>
+            </table>
+            <!-- Table End -->
+
+        </div>
+        <!-- Row End  -->
+    </div>
+    <!-- Container End  -->
+
+
+
+{% endblock content %}
+
+<!-- First Block Content End here  -->

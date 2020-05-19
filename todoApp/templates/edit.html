@@ -1,0 +1,30 @@
+<!-- BASE FILE LINKING -->
+{% extends 'base.html' %}
+
+<!--  Page Title  -->
+
+
+{% block title %}Todo App || Home{% endblock title %}
+
+<!-- First Block Content Start from here  -->
+{% block content %}
+        <div class="container todo_contain">
+            <div class="row">
+                {% if task %}
+                            
+                        <form class="todo_form" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group todo_form">
+                            <input type="text" class="form-control" id="task" name="task"
+                            value="{{ task.task }}" placeholder=" {{ task.task }}">
+                            <input type="hidden" value="{{ task.completed }}" name="completed">
+                            <small id="task" class="form-text text-muted">Edit your task from here</small>
+                            </div>
+                            <button type="submit" class="btn btn-primary"> Edit Task</button>
+                        </form>
+                 {% endif %}
+            </div>
+        </div>
+{% endblock%}
+
+<!-- First Block Content Start from here  -->
